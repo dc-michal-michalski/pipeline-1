@@ -23,7 +23,7 @@ pipeline {
 
         stage('Build') {
             when {
-                expression { !(BRANCH_NAME ==~ /\[ci skip\]/) }
+                changelog { not "^\\[ci skip]*\$" }
             }
             steps {
                 sh 'mvn clean verify'
