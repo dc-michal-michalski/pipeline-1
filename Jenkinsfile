@@ -25,6 +25,11 @@ pipeline {
         }
 
         stage('Build') {
+            when {
+                not {
+                    changelog '.*^\\[ci skip\\] .+$'
+                }
+            }
             steps {
                 sh 'mvn clean verify'
                 junit '**/target/**/*.xml'
