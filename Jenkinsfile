@@ -7,9 +7,9 @@ pipeline {
     }
 
 
-    triggers {
-        cron('*/1 * * * *')
-    }
+//    triggers {
+//        cron('*/1 * * * *')
+//    }
 
     stages {
         stage('Clean workspace') {
