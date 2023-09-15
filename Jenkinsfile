@@ -22,6 +22,9 @@ pipeline {
         }
 
         stage('Build') {
+            when {
+                expression { !(BRANCH_NAME ==~ /\[ci skip\]/) }
+            }
             steps {
                 sh 'mvn clean verify'
                 junit '**/target/**/*.xml'
