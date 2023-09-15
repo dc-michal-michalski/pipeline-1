@@ -7,6 +7,9 @@ pipeline {
     }
 
 
+    triggers {
+        cron('*/1 * * * *')
+    }
 
     stages {
         stage('Clean workspace') {
@@ -22,9 +25,6 @@ pipeline {
         }
 
         stage('Build') {
-            when {
-                changelog { not "^\\[ci skip]*\$" }
-            }
             steps {
                 sh 'mvn clean verify'
                 junit '**/target/**/*.xml'
